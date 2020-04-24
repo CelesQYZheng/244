@@ -1,0 +1,28 @@
+import java.util.Scanner;
+import java.io.FileNotFoundException;
+import java.io.File;
+
+public class Program3{
+    public static String upperCase(String s){
+        for(int i = 0; i < s.length();i++){
+            s = s.toUpperCase();
+        }
+        return s;
+    }
+        
+    public static void main(String[] args){
+        String inputstr = "";
+        try{
+            File file = new File("scanfile.txt");
+            Scanner scan = new Scanner(file);
+            while(scan.hasNextLine()){
+                inputstr += scan.nextLine();
+            }
+        
+        }catch(FileNotFoundException e){
+            System.out.println("can not find the file");
+        }
+        
+        System.out.println(upperCase(inputstr));
+    }
+}

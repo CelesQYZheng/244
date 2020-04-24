@@ -1,0 +1,45 @@
+Q1.
+An InputStreamReader is a bridge from byte streams to character streams: It reads bytes and decodes them into characters using a specified charset.
+
+Q2.
+wrapping an InputStreamReader within a BufferedReader.
+BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+
+Q3.
+readLine()
+Returns: A String containing the contents of line,
+not including any line-termination characters,
+not null if the end of the stream has been reached
+
+Q4.
+Prints a String and then terminates the line.
+Returns a String or null.
+
+Q5.
+Creates a server socket, bound to the specified port.
+
+Q6.
+Listens for a connection to be made to this socket and accepts it.
+
+Q7.
+Socket(InetAddress address, int port)
+
+Q8.
+Returns an input stream for reading bytes from this socket.
+
+Q9.What method would you use to have a socket use an OutputStream?
+getOutputStream()
+
+Q10.
+Date()
+Allocates a Date object and initializes it so that it represents the time
+at which it was allocated, measured to the nearest millisecond
+
+Q11.
+Date d = new Date();
+int t = d.getTime();
+int d = d.getDate();
+Sytem.out.println("Date:"+d+" time:" +t);
+
+Q12
+connection refused

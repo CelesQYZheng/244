@@ -1,0 +1,41 @@
+Q1 What two ways can you use to create a thread? Explain each in a couple of sentences.
+
+1.To declare a class to be a subclass of Thread. This subclass should override the run method of class Thread.
+2.To create a thread is to declare a class that implements the Runnable interface. That class then implements the run method.
+
+Q2 Whichever way you choose to create a thread, what is the name of the method that must
+be part of your thread’s implementation?
+Every thread has a name for identification purposes. More than one thread may have the same name. If a name is not specified when a thread is created, a new name is generated for it.
+
+Q3 What method does a program call to start a thread running?
+start()
+
+Q4.
+Line 14 & 15 uses Thread. 
+
+Q5.
+create two new Thread, and run the thread
+
+Q6.
+no, they are both threads
+
+Q7.
+
+//Client.java
+public class Client {
+       public static void main(String[] args){
+              try{
+                int port = Integer.parseInt(args[0]);
+                Socket socket = new Socket(args[1],port);
+                System.err.println("Connected to "+ args[1] + "on port"+port);
+                new ReadWriteThread(socket.getInputStream(),System.out).start();
+                new ReadWriteThread(System.in, socket.getOutputStream()).start();
+        }catch (Exception e){
+               e.printStackTrace();
+               System.err.println("\nUsage: java Client <host>");
+               }
+        }
+}
+
+
+Q8.because sometimes threads wake up at the same time.

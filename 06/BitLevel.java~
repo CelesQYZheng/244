@@ -1,0 +1,46 @@
+import java.io.IOException;
+import java.util.Scanner;
+import java.io.*;
+
+public class BitLevel{
+    public static void main(String[] args) throws Exception{
+        // scaneer
+       // System.out.println("Enter the key");
+        Scanner scan = new Scanner(System.in);
+      //  String key = scan.nextLine();
+       //scan.close();
+       String key="";
+       while(scan.hasNext()){
+        key+=scan.next();
+       }
+        int input=0;
+        int count = 0;
+        // read the key as a string
+       // try{
+
+        while((input=System.in.read())!=-1){
+            //while(true){
+                //int input = System.in.read();
+                //if(input == -1){
+                 //   break;
+               // }
+               // int count = 0;
+                int k = key.charAt(count);
+                System.out.write(input ^ k);
+                count++;
+                if(count == key.length()){
+                        count = 0;
+                    }
+            }
+        System.in.close();
+        System.out.close();
+        //}catch(IOException e){
+        //    System.err.println("I/O error occurs");
+        //}
+    }
+}
+/*
+int i = 5 = 0b0101; 
+char c = 65;
+char c = 'A'; // 0 - 255
+*/

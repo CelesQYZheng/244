@@ -1,0 +1,18 @@
+Q1.What does the method getLocalPort() return?
+Returns the local port number to which this socket is bound.
+
+Q2 : What does the method getInetAddress() return?
+Returns the address to which the socket is connected.
+
+Q3 : What does the method getPort() return?
+Returns the remote port number to which this socket is connected.
+
+Q4 : Based on your preparation for the lab, what does this new statement do?
+print out the information about the IP address, port it connected and local port.
+
+Q5 : Based on your preparation for the lab, what do lines 55 -58 do?
+when there is a new client connected to chatServer,
+print out the message that a client is connnected with ChatServer,
+and print the address of socket, port number of the client,local port number.
+
+Q6.

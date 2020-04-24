@@ -1,0 +1,21 @@
+import java.io.IOException;
+public class Caesar{
+    public void main(String[] args){
+        try{
+            while(true){
+                String result = "";
+                String s = System.in.read();
+                for(int i = 0; i < s.length(); i++){
+                    if(s.charAt(i)+2 > z)
+                        result += A+2-255;
+                }else{
+                    result += s.chatAt(i)+2;
+                }
+                System.out.write(result);
+            }catch(IOException e){
+                System.err.println("I/O error occurs");
+            }
+            
+        }
+    }
+}

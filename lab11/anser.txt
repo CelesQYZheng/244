@@ -1,0 +1,42 @@
+
+Q1 Explain the purpose of the send() method of ClientHandler.
+
+send messages to client
+
+Q2 Where is the line in send() going to?
+
+client's window
+
+Q3 Explain the purpose of the toString() method of ClientHandler.
+
+make a statement(because id contains the number from count) to a String.
+
+Q4 When a client closes a connection and terminates,
+and then a new client connects,
+is the client number recycled? Why or why not?
+
+no, the client number will increment by 1. becuase ++count is incrementing the number.
+
+
+Q5 List the lines of code executed when the ChatServer starts up
+to the point where it is listening for its first connection.
+The list should be in execution order.
+
+line 24
+
+Q6 If 3 clients have connected to ChatServer,
+how many threads are running assuming no client has terminated.
+Include the client threads in your count.
+
+10
+
+Q7 Describe what each thread from Q6 is doing.
+For threads which are performing the same task but for different clients,
+you should state how many of that particular thread is running.
+
+SERVER SIDE
+3 of them read from their clientHandler and send the data to server.
+1 is from server sends data to all clients.
+
+CLIENT SIDE
+2 ReadWriteThreads for each client

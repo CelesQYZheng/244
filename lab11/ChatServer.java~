@@ -1,0 +1,117 @@
+// ChatServer.java
+import java.io.*;
+import java.net.*;
+import java.util.*;
+public class ChatServer {
+    private static List<ClientHandler> clients = new LinkedList<ClientHandler>();
+    public static void main(String[] args) {
+        try {
+            //reates a new ChatServer and calls the startServer method
+            //passing it the command line argument which is the port number.
+            new ChatServer().startServer(Integer.parseInt(args[0]));
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.err.println("\nUsage: java ChatServer <port>");
+        }
+    }
+    public void startServer(int port) throws Exception {
+        //a new ServerSocket instance and assigns it to serverSocket.
+        ServerSocket serverSocket = new ServerSocket(port);
+        //prints a message about the server starting so we know something is going on.
+        System.err.println("ChatServer started");
+        while (true) {
+            //we call the accept() method on serverSocket.
+            //The program waits until a client connects to the socket.
+            //When a client connects, accept() returns a Socket instance.
+            //That instance is passed to the ClientHandler constructor to create a new ClientHandler instance and assign it to ch.
+            ClientHandler ch = new ClientHandler(serverSocket.accept());
+            //prints a message about accepting a connection and gives the client’s identification.
+            System.err.println("Accepted connection from " + ch);
+            //add the client to the clients list.
+            //Since multiple threads can access clients at unpredictable times,
+            //we use the synchronized() keyword to assure exclusive access.
+            synchronized (clients) {
+                //adds the new client to the list.
+                clients.add(ch);
+            }
+            //calls start() to start the new ClientHandler thread executing.
+            ch.start();
+        }
+    }
+    /**the sendAll() method of ChatServer.
+     *This method has two formal parameters: a String and a ClientHandler.
+     *The first parameter, line, is the String to be sent. The second,
+     *sender is the client which sent the String to the server.
+     **/
+    public static void sendAll(String line, ClientHandler sender) {
+        //prints a status message on the server’s screen about sending a message to the clients.
+        System.err.println("Sending ’" + line + "’ to : " + clients);
+  
+        //give the method exclusive access to clients.
+        synchronized (clients) {
+            //a for loop on clients which sends the message to each client
+            //by calling the send() method of ClientHandler once for each client.
+            for (ClientHandler cl : clients) {
+                cl.send(sender + ": " + line);
+            } }
+    }
+    
+    /**re the code for the ClientHandler class.
+     *There is an instance of this class for each client that connects to the server.
+     */
+    public static class ClientHandler extends Thread {
+        private BufferedReader input;
+        private PrintWriter output;
+        private String id;
+        private static int count = 0;
+
+        /*are the class constructor which is passed a Socket instance.*/
+        public ClientHandler(Socket socket) throws Exception {
+            //get an InputStream on the socket, wrap a InputStreamReader around it,
+            //wrap a BufferedReader around that, and finally assign the whole mess to input. 
+            input = new BufferedReader( new InputStreamReader(socket.getInputStream()));
+            //gets an OutputStream on the socket, wraps a PrintWriter around it
+            //and assigns the result to output.
+            output = new PrintWriter(socket.getOutputStream(), true);
+            //creates an id String so the client can be identified.
+            id = "client_" + ++count;
+        }
+
+        /*are the send() method of ClientHandler. Its purpose should be obvious.*/
+        public void send(String line) {
+            output.println(line);
+        }
+        
+        public String toString() {
+            return id;
+        }
+        /**are the run() method of the class.
+         * It is called whenever a ClientHandler thread is started.
+         *It is a try-catch-finally block.*/
+        public void run() {
+            try {
+                //causes a message to be printed in the clients window giving its identity.
+                send("Welcome! You are " + this + ".");
+                String line;
+
+                //form a while loop that repeatedly reads a line from input
+                //and calls the sendAll() method of ChatServer.
+                //In this case, the input is the socket of the thread.
+                //The result is that whatever the connected client sends is printed on the screen of all clients.
+                while ((line = input.readLine()) != null) {
+                    sendAll(line, this);
+                }
+                
+            } catch (IOException e) {
+                e.printStackTrace();
+            } finally {
+                //remove the terminated client from the clients list, using exclusive access to clients.
+                synchronized (clients) {
+                    clients.remove(this);
+                }
+                //prints a message stating which client closed.
+                System.err.println(this + " closed connection!");
+            }
+        }
+    }
+}

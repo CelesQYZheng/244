@@ -1,0 +1,48 @@
+Q1 Explain in your own words why we must use the synchronized() keyword when we access clients.
+locked client list, avoid crash, because lots of threads access client list
+
+Q2 What line of code starts the thread which reads from the keyboard and prints to all clients?;
+15: new MultiServer().start();
+
+Q3 What lines of code does this thread execute?
+31-34: ...
+
+Q4 What is the response when ChatServer starts?
+ChatServer started.
+
+Q5 What is the response of the server when this client is started?
+Accepted connection from client_1
+
+Q6 What is the response in the client window as it starts?
+Connected to localhost on port 7777
+Welcome! You are client_1.
+
+Q7 What is the response of the server when this client is started?
+Accepted connection from client_2
+
+Q8 What is the response in the client window as it starts?
+Welcome! You are client_2.
+
+Q9 What is the response in client_2’s window?
+client_1: Hello from client 1
+
+Q10 What is the response in client_3’s window?
+client_1: Hello from client 1
+
+Q11 What is the response in the server’s window?
+Sending ’Hello from client 1’ to : [client_1, client_2, client_3]
+
+Q12 What is the response in the server’s window?
+client_3 closed connection!
+
+Type something in client_1’s window.
+Q13 What is the response in client_2’s window?
+client_1: yo
+
+
+Q14 What is the response in the server’s window?
+Sending ’yo’ to : [client_1, client_2]
+
+In the UL window, start a new client by typing: java Client 7777 localhost
+Q15 What client are you now?
+client_4

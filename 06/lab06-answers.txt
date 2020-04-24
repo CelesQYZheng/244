@@ -1,0 +1,60 @@
+Q1 What is the symbol for the exclusive OR operator in Java?
+
+The bitwise ^ operator performs a bitwise exclusive OR operation.
+
+
+FileInputStream
+Q2 What is this class meant for?
+
+FileInputStream is meant for reading streams of raw bytes such as image data. For reading streams of characters, consider using FileReader.
+
+
+Q3 Write a statement that uses a constructor to create a new FileInputStream and opens a file for reading.
+
+FileInputStream s = new FileInputStream("file");
+
+
+Q4 What method do you use to read a single byte? What does it return?
+read()
+returns: the next byte of data, or -1 if the end of the file is reached
+
+
+FileOutputStream
+Q5 What is this class meant for?
+FileOutputStream is meant for writing streams of raw bytes such as image data. For writing streams of characters, consider using FileWriter.
+
+
+Q6 Write a statement that uses a constructor to create a new FileOutputStream and opens a file for writing.
+
+FileOutputStream outS = new FileOutputStream(file);
+
+
+Q7 What is the signature of the method which writes single bytes?
+write(int b)
+
+
+Q8 What method should you call when you are finished writing output?
+finalize(); or close();
+
+Q9 Both of the programs you will implement require you to use the command line arguments. To get some practice with this, write a program (you don’t have to compile it) which takes two arguments. The first argument should be a word and the second argument should be a number which determines how many times to print out the word.
+
+public class Echo {
+    public static void main (String[] args) {
+        for (String s: args) {
+            System.out.println(s);
+        }
+int firstArg;
+if (args.length > 0) {
+    try {
+        firstArg = Integer.parseInt(args[0]);
+    } catch (NumberFormatException e) {
+        System.err.println("Argument" + args[0] + " must be an integer.");
+        System.exit(1);
+    }
+}
+
+    }
+
+}
+
+

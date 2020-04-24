@@ -1,0 +1,11 @@
+Q1 Explain in your own words why we must use the synchronized() keyword when we access
+clients.
+to send and reveceive information on time.
+
+Q2 What line of code starts the thread which reads from the keyboard and prints to all
+clients?
+new ReadWriteThread(socket.getInputStream(), System.out).start();
+
+Q3 What lines of code does this thread execute?
+client.println(line);
+

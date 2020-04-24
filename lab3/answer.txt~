@@ -1,0 +1,50 @@
+Q1.
+InputStream
+
+Q2.
+read()
+
+Q3.
+absruct int
+
+Q4.
+-1
+
+Q5.
+PrintStream
+
+Q6.
+write(int b)
+
+Q7.
+int
+
+Q8.
+try{
+        System.in.read();
+}catch(IOException e){
+        System.err.println("I/O error occurs");
+        System.exit(1);
+}
+System.out.write();
+
+Q9.
+readLine()
+
+Q10.
+null
+
+Q11.
+Scanner scan = new Scanner(System.in);
+
+Q12.
+hasNextLine()
+
+Q13.
+hasNextLine()
+next()
+return the next token
+
+Q14.
+next()
+hasNext() return true if this scanner has another token
